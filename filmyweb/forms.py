@@ -2,6 +2,6 @@ from django.forms import ModelForm
 from .models import Film
 
 class FilmForm(ModelForm):
-    class Meta:
+    class Meta():
         model = Film
-        fields = ['Tytul','opis','premiera','rok','imdb_rating','plakat']
+        fields = ['tytul','rok','premiera','opis','imdb_rating','plakat']
