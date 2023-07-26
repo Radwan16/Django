@@ -1,12 +1,12 @@
 {%extends 'glowny.html'%}
-
+{% load bootstrap %}
 {%block tytul%} Film form {% endblock %}
 
 {% block strona %}
     <form method="post" enctype="multipart/form-data">
         {% csrf_token %}
-        {{ form }}
-        <button type="submit">Dodaj film</button>
+        {{form | bootstrap}}
+        <br><button type="submit">Dodaj film</button>
     </form>
     <a href="{% url 'wszystkie_filmy' %} ">Cofnij</a>
 {% endblock %}

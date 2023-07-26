@@ -1,11 +1,12 @@
 {%extends 'glowny.html'%}
-
+{% load bootstrap %}
 {%block tytul%} Zaloguj {% endblock %}
 
 {% block strona %}
+<i class="fa-solid fa-apple-whole"></i>
     <form method="post">
         {% csrf_token%}
-        {{form}}
+        {{form | bootstrap}}
         <button type="submit">Zaloguj</button>
     </form>
 {% endblock %}
