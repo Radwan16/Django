@@ -3,10 +3,15 @@
 {%block tytul%} Zaloguj {% endblock %}
 
 {% block strona %}
-<i class="fa-solid fa-apple-whole"></i>
-    <form method="post">
-        {% csrf_token%}
-        {{form | bootstrap}}
-        <button type="submit">Zaloguj</button>
-    </form>
+    <br/> <br/>
+    <div class="card" style="width: 26rem;">
+        <div class="card-body">
+            <h5 class="card-title">Zaloguj się </h5>
+            <form method="post">
+                {% csrf_token%}
+                {{form | bootstrap}}
+                <button type="submit"class="btn btn-primary">Zaloguj <i class="fa-solid fa-right-to-bracket"></i></button>
+            </form>
+        </div>
+    </div>
 {% endblock %}
