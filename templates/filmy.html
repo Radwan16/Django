@@ -3,25 +3,44 @@
 {%block tytul%} Lista filmów {% endblock %}
 
 {% block strona %}
+    <div class="jumbotron">
+        {% if user.is_authenticated%}
+        <h1 class="display-4">Witaj {{ user.username}}</h1>
 
-    {% if user.is_authenticated%}
-        Witaj {{ user.username}}<br>
-        <a href="{% url 'logout' %} ">Logout</a>
+        <a href="{% url 'logout' %} "class="btn btn-danger">Wyloguj <i class="fa-solid fa-right-from-bracket"></i></a>
     {% else %}
-        <a href="{% url 'login' %} ">Login</a>
+        <a href="{% url 'login' %} "class="btn btn-success">Zaloguj <i class="fa-solid fa-right-to-bracket"></i></a>
     {% endif %}
+    </div>
+
+
+
+
     <hr>
-    <a href="{% url 'nowy_film' %} ">Nowy</a>
+    <a href="{% url 'nowy_film' % }">Nowy <i class="fa-solid fa-plus"></i></a>
     {% if filmy|length == 0 %}
         <h2>Brak filmów w bazie</h2>
     {%else%}
-        <h2>Ilość filmów w BD: {{filmy|length}}</h2>
+<!--        <h2>Ilość filmów w BD: {{filmy|length}}</h2>-->
 
     {% for film in filmy %}
-            <h3>{{ film }}</h3>
-            <p>{{film.opis}}</p>
-            <a href="{% url 'edytuj_film'  film.id %} ">Edytuj</a>
-            <a href="{% url 'usun_film'  film.id %} ">Usuń</a>
+            <div class="card" style="width: 27rem;">
+              <div class="card-body">
+                  <div class="row">
+                      <div class="col-9">
+                          <h5 class="card-title">{{ film }}</h5>
+                      </div>
+
+                    <div class="col-3">
+                        <a href="{% url 'edytuj_film'  film.id %} "><i class="fa-solid fa-2x fa-pen"></i></a>
+                        <a href="{% url 'usun_film'  film.id %} "><i class="fa-solid fa-2x fa-trash"></i></a>
+                    </div>
+                  </div>
+                  <div class="row">
+                      <p class="card-text">{{film.opis}}</p>
+                  </div>
+              </div>
+            </div>
     {%endfor%}
     {% endif %}
 {% endblock %}
