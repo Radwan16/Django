@@ -12,12 +12,8 @@
         <a href="{% url 'login' %} "class="btn btn-success">Zaloguj <i class="fa-solid fa-right-to-bracket"></i></a>
     {% endif %}
     </div>
-
-
-
-
     <hr>
-    <a href="{% url 'nowy_film' % }">Nowy <i class="fa-solid fa-plus"></i></a>
+    <a href="{%url 'nowy_film' %}"class="btn btn-dark">Nowy<i class="fa-solid fa-plus"></i></a>
     {% if filmy|length == 0 %}
         <h2>Brak filmów w bazie</h2>
     {%else%}
