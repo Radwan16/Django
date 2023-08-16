@@ -14,17 +14,16 @@ def nowy_film(request):
         form.save()
         return redirect(wszystkie_filmy)
 
-    return render(request,'nowy_film.html',{'form':form})
+    return render(request,'nowy_film.html',{'form':form, 'nowy':True})
 @login_required
 def edytuj_film(request,id):
     film = get_object_or_404(Film,pk=id)
-
     form = FilmForm(request.POST or None, request.FILES or None, instance=film)
     if form.is_valid():
         form.save()
         return redirect(wszystkie_filmy)
 
-    return render(request,'nowy_film.html',{'form':form})
+    return render(request,'nowy_film.html',{'form':form, 'nowy':False})
 @login_required
 def usun_film(request,id):
     film = get_object_or_404(Film,pk=id)
