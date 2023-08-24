@@ -7,3 +7,13 @@ h3{
 p{
   color:black;
 }
+.film-plakat{
+    width: 150px;
+    float: left;
+}
+.film-icon{
+    font-size :1.6rem;
+}
+.card{
+    width=36rem;
+}
