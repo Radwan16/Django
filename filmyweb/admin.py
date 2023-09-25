@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Film, DodatkoweInfo
+from .models import Film, DodatkoweInfo, Ocena
 
 # admin.site.register(Film)
 @admin.register(Film)
@@ -11,3 +11,4 @@ class Filmadmin(admin.ModelAdmin):
     search_fields = ("tytul", "opis")
 
 admin.site.register(DodatkoweInfo)
+admin.site.register(Ocena)

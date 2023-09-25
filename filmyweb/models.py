@@ -25,4 +25,7 @@ class Film(models.Model):
 
     def tytul_z_rokiem(self):
         return "{} ({})".format(self.tytul, self.rok)
-
+class Ocena(models.Model):
+    recenzja = models.TextField(default="", blank=True)
+    gwiazdki = models.PositiveSmallIntegerField(default=5)
+    film = models.ForeignKey(Film, on_delete=models.CASCADE)
