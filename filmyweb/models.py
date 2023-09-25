@@ -29,3 +29,8 @@ class Ocena(models.Model):
     recenzja = models.TextField(default="", blank=True)
     gwiazdki = models.PositiveSmallIntegerField(default=5)
     film = models.ForeignKey(Film, on_delete=models.CASCADE)
+
+class Aktor(models.Model):
+    imie = models.CharField(max_length=32)
+    nazwisko = models.CharField(max_length=32)
+    filmy = models.ManyToManyField(Film)
