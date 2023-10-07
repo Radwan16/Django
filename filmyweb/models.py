@@ -10,6 +10,8 @@ class DodatkoweInfo(models.Model):
 
     czas_trwania = models.PositiveSmallIntegerField(default=0)
     gatunek = models.PositiveSmallIntegerField(default=0, choices=GATUNEK)
+
+
 class Film(models.Model):
     tytul= models.CharField(max_length=60,  blank= False ,unique=True)
     rok = models.PositiveSmallIntegerField(default=2000)
