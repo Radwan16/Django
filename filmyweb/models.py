@@ -33,6 +33,6 @@ class Ocena(models.Model):
     film = models.ForeignKey(Film, on_delete=models.CASCADE)
 
 class Aktor(models.Model):
-    imie = models.CharField(max_length=32)
+    imie =  models.CharField(max_length=32)
     nazwisko = models.CharField(max_length=32)
-    filmy = models.ManyToManyField(Film)
+    filmy = models.ManyToManyField(Film, related_name="aktorzy")
