@@ -56,10 +56,9 @@
         <p>{{ocena.recenzja}}</p>
     {%endfor%}
     <h4>Obsada :</h4>
-    <ul>
     {%for aktor in aktorzy%}
-        <li>{{aktor.imie}} {{aktor.nazwisko}}</li>
+        <b>{{aktor.imie}} {{aktor.nazwisko}}</br></b>
     {%endfor%}
-    </ul>
+    </br>
     <a href="{% url 'wszystkie_filmy' %} ">Cofnij</a>
 {% endblock %}

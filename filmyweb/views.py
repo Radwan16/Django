@@ -10,15 +10,16 @@ def wszystkie_filmy(request):
 def nowy_film(request):
     form_film = FilmForm(request.POST or None, request.FILES or None)
     form_dodatkowe = DodatkoweInfoForm(request.POST or None)
+    form_ocena = OcenaForm(request.POST or None)
+    form_aktor = AktorForm(request.POST or None)
 
     if all((form_film.is_valid(), form_dodatkowe.is_valid())):
         film = form_film.save(commit=False)
         dodatkowe = form_dodatkowe.save()
         film.dodatkowe = dodatkowe
-        film.save()
         return redirect(wszystkie_filmy)
 
-    return render(request,'nowy_film.html',{'form':form_film, 'form_dodatkowe':form_dodatkowe, 'nowy':True})
+    return render(request,'nowy_film.html',{'form':form_film, 'form_dodatkowe':form_dodatkowe,'form_ocena':form_ocena,'form_aktor': form_aktor,'nowy':True})
 @login_required
 def edytuj_film(request,id):
     film = get_object_or_404(Film,pk=id)
@@ -33,17 +34,18 @@ def edytuj_film(request,id):
     form_film = FilmForm(request.POST or None, request.FILES or None, instance=film)
     form_dodatkowe = DodatkoweInfoForm(request.POST or None, instance=dodatkowe)
     form_ocena = OcenaForm(request.POST or None)
-    form_aktor = AktorForm(request.POST or None, instance=film)
+    form_aktor = AktorForm(request.POST or None)
     if request.method =='POST':
         if 'gwiazdki' in request.POST:
             ocena = form_ocena.save(commit=False)
             ocena.film = film
             ocena.save()
+
     if request.method =='POST':
-        if 'imie' and 'nazwisko' in request.POST:
-            aktor = form_aktor.save(commit=False)
-            aktor.film = film
-            aktor.save()
+        if 'filmy' in request.POST:
+            if form_aktor.is_valid():
+                aktor = form_aktor.save()
+                return redirect(wszystkie_filmy)
 
     if all((form_film.is_valid(), form_dodatkowe.is_valid())):
         film = form_film.save(commit=False)

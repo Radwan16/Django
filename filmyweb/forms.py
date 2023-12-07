@@ -20,4 +20,5 @@ class OcenaForm(ModelForm):
 class AktorForm(ModelForm):
     class Meta:
         model = Aktor
-        fields = ['imie','nazwisko']
+        fields = ['imie','nazwisko','filmy']
+
