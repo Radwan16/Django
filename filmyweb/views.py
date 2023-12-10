@@ -3,6 +3,16 @@ from django.http import HttpResponse
 from .models import Film, DodatkoweInfo, Ocena, Aktor
 from .forms import FilmForm, DodatkoweInfoForm, OcenaForm, AktorForm
 from django.contrib.auth.decorators import login_required
+from rest_framework import viewsets
+from django.contrib.auth.models import  User
+from .serializers import UserSerializer
+
+class UserView(viewsets.ModelViewSet):
+    queryset = User.objects.all()
+    serializer_class = UserSerializer
+
+
+
 def wszystkie_filmy(request):
     wszystkie=  Film.objects.all()
     return render(request, 'filmy.html',{'filmy': wszystkie})
@@ -45,7 +55,7 @@ def edytuj_film(request,id):
         if 'filmy' in request.POST:
             if form_aktor.is_valid():
                 aktor = form_aktor.save()
-                return redirect(wszystkie_filmy)
+                
 
     if all((form_film.is_valid(), form_dodatkowe.is_valid())):
         film = form_film.save(commit=False)
