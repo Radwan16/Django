@@ -20,11 +20,12 @@ from django.conf import settings
 from django.conf.urls.static import static
 from django.contrib.auth import views as auth_views
 from rest_framework import routers
-from filmyweb.views import UserView,FilmView
+from filmyweb.views import UserView,FilmView,DodatkoweInfoView
 
 router = routers.DefaultRouter()
 router.register(r'users', UserView)
 router.register(r'filmy', FilmView)
+router.register(r'Info',DodatkoweInfoView)
 
 urlpatterns = [
     path('admin/', admin.site.urls),
