@@ -11,7 +11,8 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 """
 
 from pathlib import Path
-from decouple import config
+# from decouple import config
+from dj_database_url import parse as dburl
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -19,8 +20,8 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
 
-SECRET_KEY = config('SECRET_KEY')
-DEBUG = config('DEBUG', default=False, cast=bool)
+SECRET_KEY = "django-insecure-6zn1wk#7i2i0=t*wtyf#p7$v7dm4nbj%6%^gr$s2z3f^))t7ww"
+DEBUG = True
 
 ALLOWED_HOSTS = ["127.0.0.1"]
 
@@ -68,17 +69,15 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'filmy.wsgi.application'
-
-
-# Database
-# https://docs.djangoproject.com/en/4.2/ref/settings/#databases
-
-DATABASES = {
+# default_dburl = 'sqlite:///'+ os.path.join(BASE_DIR,'db.sqlite3')
+DATABASES = DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': BASE_DIR / 'db.sqlite3',
     }
-}
+}#{'default':config('DATABASE_URL',default=default_dburl, cast= dburl)}
+
+
 
 
 # Password validation
